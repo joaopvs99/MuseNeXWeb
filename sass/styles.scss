@@ -1,11 +1,6 @@
-
-$red: #8B2727;
-
-$focus-ring-color:      rgba($red, .25);
-$border-color:$red;
-$component-active-bg: $red;
-
-
+@import 'global.scss';
+@import 'theme.scss';
+@import 'sidebar.scss';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 @import '../node_modules/material-icons/iconfont/material-icons.css';

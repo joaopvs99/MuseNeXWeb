@@ -6,6 +6,7 @@
  */
 @import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 @import '../node_modules/material-icons/iconfont/material-icons.css';
+@import 'custom.css';
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
