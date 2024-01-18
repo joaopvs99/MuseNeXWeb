@@ -1,0 +1,57 @@
+
+<div class="row d-flex justify-content-center py-5">
+
+    <div class="col-md-6">
+        <div class="container rounded-4 p-3" style="background-color: #f0f0f0;">
+        <form>
+            <div class="form-group mb-2">
+                <label for="category">Category:</label>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Category
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <a class="dropdown-item" href="#">Category 1</a>
+                        <a class="dropdown-item" href="#">Category 2</a>
+                        <a class="dropdown-item" href="#">Category 3</a>
+                        <!-- Add more categories as needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="expositionName">Exposition Name:</label>
+                <input type="text" class="form-control" id="expositionName" placeholder="Enter exposition name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="responsiblePerson">Responsible Person's Name:</label>
+                <input type="text" class="form-control" id="responsiblePerson" placeholder="Enter responsible person's name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="descriptionPT">Description (PT):</label>
+                <textarea class="form-control" id="descriptionPT" rows="3" placeholder="Enter description in Portuguese"></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="descriptionEng">Description (Eng):</label>
+                <textarea class="form-control" id="descriptionEng" rows="3" placeholder="Enter description in English"></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="openingDate">Opening Date:</label>
+                <input type="text" class="form-control datepicker" id="openingDate" placeholder="Select opening date">
+            </div>
+            <div class="form-group mb-3">
+                <label for="endDate">End Date:</label>
+                <input type="text" class="form-control datepicker" id="endDate" placeholder="Select end date">
+            </div>
+            <div class="form-group mb-3">
+                <label for="openingHours">Opening Hours:</label>
+                <input type="text" class="form-control clockpicker" id="openingHours" placeholder="Select opening hours">
+            </div>
+            <div class="form-group mb-3">
+                <label for="closingHours">Closing Hours:</label>
+                <input type="text" class="form-control clockpicker" id="closingHours" placeholder="Select closing hours">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    </div>
+</div>
