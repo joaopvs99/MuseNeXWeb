@@ -8,8 +8,13 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"rel="stylesheet">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+	<link rel="icon" type="image/x-icon" href="../images/logo.svg">
 	<link rel="stylesheet" href="../sass/styles.css">
+
+	<script src="../node_modules/bootstrap/js/src/dropdown.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +48,7 @@
 					<img src="https://github.com/mdo.png" alt="" width="35" height="35" class="rounded-circle">
 					<span class="sb-text mb-1">Your Name</span>
 					<div class="sb-submenu">
-						<div class="sb-item"><i class="sb-icon bi bi-box-arrow-left h4"></i><span class="sb-text">Log Out</span></div>
+						<div class="sb-item" id="log-out"><i class="sb-icon bi bi-box-arrow-left h4"></i><span class="sb-text">Log Out</span></div>
 						<div class="sb-item"><i class="sb-icon bi bi-trash-fill h4"></i><span
 								class="sb-text">Delete Account</span>
 						</div>
@@ -139,9 +144,7 @@
 		</div>
 	</div>
 	</div>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 	<script src="../scripts/main.js"></script>
-
 </body>
 
 </html>

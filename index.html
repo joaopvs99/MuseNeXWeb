@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="images/logo.svg">
     <link rel="stylesheet" href="sass/styles.css">
   </head>
   <body>
@@ -35,13 +36,13 @@
             <form action="subdir/home.html" method="get">
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form1Example13" class="form-control form-control-lg" />
+                <input type="email" id="login-email" class="form-control form-control-lg" />
                 <label class="form-label" for="form1Example13">Email address</label>
               </div>
     
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="form1Example23" class="form-control form-control-lg" />
+                <input type="password" id="login-password" class="form-control form-control-lg" />
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
     
@@ -55,7 +56,7 @@
               </div>
     
               <!-- Submit button -->
-              <button type="submit" class="w-100 btn btn-dark btn-lg mb-4">Sign in</button>
+              <button type="submit" id="login-btn" class="w-100 btn btn-dark btn-lg mb-4">Log in</button>
               <p class="text-center">Don't have an account? <a class="text-dark" href="subdir/signup.html">Sign up</a></p>
     
             </form>
@@ -63,5 +64,6 @@
         </div>
       </div>
     </section>
+    <script src="scripts/index.js"></script>
   </body>
 </html>

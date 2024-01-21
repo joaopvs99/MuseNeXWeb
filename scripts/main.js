@@ -17,6 +17,10 @@ document.getElementById('header').addEventListener('click', function() {
     window.location.href = '../index.html';
 });
 
+document.getElementById('log-out').addEventListener('click', function() {
+    window.location.href = '../index.html';
+});
+
 
 $(document).ready(function () {
     $(".sidebar-buttons").on("click", function () {
@@ -36,5 +40,3 @@ function nextpage(idd) {
             console.error("Error fetching page:", error);
         });
 }
-
-
