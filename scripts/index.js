@@ -1,7 +1,6 @@
-const express = require('express');
-const cors = require('cors'); // Import the cors middleware
-const app = express();
-
+const cors = require('cors'); 
+const express = require('express');// Import the cors middleware
+const app = express(); 
 const admin = require("firebase-admin");
 const creds = require("./creds.json");
 

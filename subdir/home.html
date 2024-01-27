@@ -11,10 +11,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.svg">
 	<link rel="stylesheet" href="../sass/styles.css">
-
-	<script src="../node_modules/bootstrap/js/src/dropdown.js"></script>
+	
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>  
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+		<!-- Add this to the <head> of your HTML file -->
+			<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js" defer></script>
+			<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js" defer></script>
+			<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js" defer></script>
 </head>
 
 <body>
@@ -48,7 +52,10 @@
 					<img src="https://github.com/mdo.png" alt="" width="35" height="35" class="rounded-circle">
 					<span class="sb-text mb-1">Your Name</span>
 					<div class="sb-submenu">
-						<div class="sb-item" id="log-out"><i class="sb-icon bi bi-box-arrow-left h4"></i><span class="sb-text">Log Out</span></div>
+						<div class="sb-item" id="btn-logout-modal">
+							<i class="sb-icon bi bi-box-arrow-left h4"></i>
+							<span class="sb-text">Log Out</span>
+						</div>
 						<div class="sb-item"><i class="sb-icon bi bi-trash-fill h4"></i><span
 								class="sb-text">Delete Account</span>
 						</div>
@@ -144,7 +151,45 @@
 		</div>
 	</div>
 	</div>
+	<div class="modal fade" id="logout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Log Out</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  Are you sure you want to log out?
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" id="btn-logout">Log Out</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	  <div class="modal fade" id="redirect-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Sucessfuly Signed Out</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  You will now be redirect to the login page.
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	<script type="module" src="../scripts/clientrequests/signout.js"></script>
 	<script src="../scripts/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
