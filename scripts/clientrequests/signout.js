@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-import {getAuth, signOut} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import {getAuth} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 const firebaseConfig = {
 
@@ -34,17 +34,18 @@ const firebaseConfig = {
 
 var signOutButton = document.getElementById('btn-logout');
 
-signOutButton.addEventListener('click', function() {
+signOutButton.addEventListener('click', () => {
   // Sign out the current user10
-  auth.signOut().then(function() {
-    // Sign-out successful.
+  auth.signOut().then(() => {
+    
+  
     $('#logout-modal').modal('hide');
     $('#redirect-modal').modal('show');
         
     setTimeout(() => {
         window.location.href = '../../index.html'; 
       }, 3000); 
-  }).catch(function(error) {
+  }).catch((error) => {
     // An error happened.
     console.error('Error signing out:', error);
   });
