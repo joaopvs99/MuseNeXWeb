@@ -6,7 +6,7 @@ form.addEventListener('submit', async (event) => {
     // Collect input values from the user
     const nome = document.getElementById('nomeInput').value;
     const localizacao = document.getElementById('localizacaoInput').value;
-    const galeria = document.getElementById('galeriaInput').value.split(','); // Assuming a comma-separated string for simplicity
+    const galeria = document.getElementById('galeriaInput').value.split(',');
     const descricao = document.getElementById('descricaoInput').value;
     const contacto = document.getElementById('contactoInput').value;
     const categoria_id = document.getElementById('categoriaIdInput').value;

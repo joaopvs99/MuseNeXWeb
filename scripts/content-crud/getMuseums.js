@@ -13,20 +13,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+var userID = "";
 
 // Handle authentication state changes
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
-        setupGetCardsEventListener(user);
+        userID=user;
     } else {
         // User is signed out
         console.log('User signed out');
         // You may want to handle this case accordingly
     }
 });
-
-
         // Show Lottie animation
         const lottieAnimationContainer = document.getElementById('lottieAnimation');
         const animation = lottie.loadAnimation({
@@ -36,9 +35,14 @@ onAuthStateChanged(auth, (user) => {
             autoplay: true, // Set autoplay to false initially
             path: '../scripts/content-crud/loading.json',
         });
-function setupGetCardsEventListener(user) {
-    document.getElementById('getCards').addEventListener('click', async function (event) {
-        event.preventDefault();
+
+        setTimeout(() => {
+            console.log(userID);
+            setupGetCardsEventListener(userID);
+          }, "1000");
+          
+        
+async function setupGetCardsEventListener(userID) {
 
         class Card {
             constructor(name, description, image) {
@@ -62,7 +66,7 @@ function setupGetCardsEventListener(user) {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `${await user.getIdToken()}`
+                        'Authorization': `${await userID.getIdToken()}`
                     },
                 });
 
@@ -104,5 +108,5 @@ function setupGetCardsEventListener(user) {
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-    });
 }
+
