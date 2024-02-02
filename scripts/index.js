@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const admin = require("firebase-admin");
 const creds = require("./creds.json");
+const multer = require("multer");
 
 admin.initializeApp({
   credential: admin.credential.cert(creds),
@@ -20,14 +21,21 @@ app.post("/signup", async (req, res) => {
     const user = {
       email: req.body.email,
       password: req.body.password,
+      displayName: req.body.displayName,
     };
-    const userResponse = await admin.auth().createUser({
+
+    const userRecord = await admin.auth().createUser({
       email: user.email,
       password: user.password,
       emailVerified: false,
       disabled: false,
     });
-    res.json(userResponse);
+
+    await admin.auth().updateUser(userRecord.uid, {
+      displayName: user.displayName,
+    });
+
+    res.json({ uid: userRecord.uid, email: userRecord.email, displayName: user.displayName });
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ error: "Failed to create user." });
@@ -50,71 +58,72 @@ app.use(async (req, res, next) => {
     res.status(401).json({ error: "Unauthorized" });
   }
 });
-
-app.post("/postMuseum", async (req, res) => {
-  const { nome, localizacao, galeria, descricao, contacto, categoria_id } =
-    req.body;
-
-  if (
-    !nome ||
-    !localizacao ||
-    !galeria ||
-    !descricao ||
-    !contacto ||
-    !categoria_id
-  ) {
-    res.status(400).json({ error: "Missing required fields" });
-
-    return;
-  }
-
-  try {
-    const userUid = req.user.uid;
-
-    const museumData = {
-      nome,
-
-      localizacao,
-
-      galeria,
-
-      descricao,
-
-      contacto,
-
-      categoria_id,
-
-      uid: userUid,
-    };
-
-    const museumRef = museusCollection.doc();
-
-    await museumRef.set(museumData);
-
-    res
-      .status(201)
-      .json({ message: "Museum added successfully", museum: museumData });
-  } catch (error) {
-    console.error("Error adding museum to Firestore:", error);
-
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-app.get("/user", (req, res) => {
-  const userUid = req.user.uid;
-  res.status(200).json({ uid: userUid });
-});
-
 const firestore = admin.firestore();
 const museusCollection = firestore.collection("Museus");
 
-app.get("/getcards", async (req, res) => {
+app.post("/postMuseum", async (req, res) => {
+  try {
+    console.log("request_body:", req.body);
+    
+    // Parse JSON data
+    let jsonData = req.body || {};
+  
+    // Access jsonData fields
+    let categoria_id = jsonData.category;
+    let nome = jsonData.museumName;
+    let descricao = jsonData.descriptionPT;
+    let localizacao = jsonData.address;
+    let contacto = jsonData.phoneNumber;
+    let uid = jsonData.uid;
+    // Access other fields as needed
+
+    // Access the array of download URLs
+    let galeria = jsonData.gallery || [];
+    
+    // Example: Adding data to Firestore
+    await museusCollection.add({
+      categoria_id,
+      nome,
+      descricao,
+      localizacao,
+      contacto,
+      galeria,
+      uid
+
+    });
+
+    res.status(200).json({ success: true, message: 'Data successfully added to Firestore' });
+  } catch (error) {
+    console.error('Error processing postMuseum request:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
+
+
+app.get("/getmuseums", async (req, res) => {
   const userUid = req.user.uid;
   try {
     const snapshot = await museusCollection.where("uid", "==", userUid).get();
 
-    const data = snapshot.docs.map((doc) => doc.data());
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+
+    res.status(200).json(data);
+    console.log({data});
+  } catch (error) {
+    console.error("Error fetching data from Firestore:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+const categoryCollection = firestore.collection("Categorias");
+
+app.get("/getcategories", async (req, res) => {
+
+  try {
+    const snapshot = await categoryCollection.get();
+
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
     res.status(200).json(data);
   } catch (error) {

@@ -1,7 +1,7 @@
 document.getElementById('signupForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const name = document.getElementById('signupName').value;
+    const displayName = document.getElementById('signupName').value;
     const email = document.getElementById('signupEmail').value;
     const password = document.getElementById('signupPassword').value;
 
@@ -11,7 +11,7 @@ document.getElementById('signupForm').addEventListener('submit', async function 
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ displayName, email, password }),
       });
 
       const data = await response.json();

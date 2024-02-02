@@ -1,8 +1,6 @@
-<div class="row d-flex justify-content-center py-5">
-
-    <div class="col-md-6">
+ <div class="col-md-6">
         <div class="container rounded-4 p-3" style="background-color: #f0f0f0;">
-            <form>
+            <form id="event-form">
                 <div class="form-group mb-2">
                     <label for="category">Category:</label>
                     <div class="dropdown">
@@ -40,8 +38,8 @@
                 <div class="d-flex justify-content-between mb-3">
                     <div class="col-sm-5">
                         <label for="datepicker">Starting Date:</label>
-                        <div class="input-group date" id="startdate">
-                            <input type="text" class="form-control rounded-1">
+                        <div class="input-group date"  data-provide="datepicker">
+                            <input type="text" class="form-control rounded-1" id="startdate">
                             <span class="input-group-append">
                             </span>
                             <span class="input-group-text">
@@ -51,8 +49,8 @@
                     </div>
                     <div class="col-sm-5">
                         <label for="datepicker">Ending Date:</label>
-                        <div class="input-group date" id="enddate">
-                            <input type="text" class="form-control rounded-1">
+                        <div class="input-group date"  data-provide="datepicker">
+                            <input type="text" class="form-control rounded-1" id="enddate">
                             <span class="input-group-append">
                             </span>
                             <span class="input-group-text">
@@ -79,7 +77,8 @@
             </form>
         </div>
     </div>
-</div>
+
+    <script type="module" src="../../scripts/content-crud/postEvents.js"></script>
 
 <script>
     $(function () {
@@ -99,4 +98,4 @@
         }).datepicker('update', new Date());
     });
 
-</script> >
+</script>

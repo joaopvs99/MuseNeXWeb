@@ -39,11 +39,13 @@
 						class="sb-text fs-4 fw-bold mt-3 me-2">MuseNeX</span>
 				</div>
 					<hr>
-				<div class="sb-item" id="getCards"><i class="sb-icon fa fa-solid fa-grip-vertical fa-2xl ms-1"></i>
+				<div class="sb-item sidebar-buttons" id="getCards" data-page-id="1"><i class="sb-icon fa fa-solid fa-grip-vertical fa-2xl ms-1"></i>
 					<span class="sb-text ms-2">Dashboard</span>
 				</div>
-				<div class="sb-item sidebar-buttons"><i class="sb-icon fa fa-solid fa-chart-simple fa-2xl"></i>
-					<span class="sb-text">Analytics</span>
+				<div class="sb-item sidebar-buttons"  data-page-id="3"><i class="sb-icon fa fa-solid fa-object-ungroup fa-2xl mt-2"></i>
+					<span class="sb-text exp">Expositions</span>
+				</div>
+				<div class="sb-item"><i class="sb-icon fa fa-solid fa-chart-simple fa-2xl"></i><span class="sb-text">Analytics</span>
 				</div>
 				<div class="btn-toggle-sidebar sb-item"><i class="sb-icon fa fa-solid fa-chevron-left fa-xl"></i>
 					<i class="sb-icon fa fa-solid fa-chevron-right fa-xl"></i></div>
@@ -80,43 +82,13 @@
 			<div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4 p-md-5 py-md-5" id="cardContainer" style="display: none;">
 			</div>
 			
-
-			  
-			  <div id="container-floating">
-
-				<div class="nd4 nds">
-					<img class="reminder" src="https://img.icons8.com/puffy/32/FFFFFF/picture.png" alt="picture"/>
-				</div>
-
-				<a href="#addEvent-modal" data-toggle="modal" data-target="#addEvent-modal" id="addEvent-btn">
-				<div class="nd3 nds">
-					<img class="reminder" src="https://img.icons8.com/android/24/FFFFFF/calendar.png" alt="calendar"/>
-				</div>
-				</a>
-
-				<a href="#addMuseum-modal" data-toggle="modal" data-target="#addMuseum-modal" id="addMuseum-btn">
-				<div class="nd1 nds">
-					<img class="reminder" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/museum.png" alt="museum"/>
-				</div>
-				 </a>
-			  
-				<div id="floating-button">
-				  <p class="plus">+</p>
-				  <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
-				</div>
-
-			  </div>
-			<!-- <a href="#addMuseum-modal" class="floating" data-toggle="modal" data-target="#addMuseum-modal" id="addMuseum-btn">
+			<a href="#addMuseum-modal" class="floating" data-toggle="modal" data-target="#addMuseum-modal" id="addMuseum-btn">
 				<div><i class="bi bi-plus-lg h2" style="color: white;"></i></div>
-			</a> -->
+			</a>
 		</div>
 	</div>
 	</div>
 
-
-
-
-		  <!-- Modals -->
 
 	<div class="modal fade" id="addMuseum-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -171,75 +143,6 @@
 		</div>
 	  </div>
 
-	  <div class="modal fade" id="addEvent-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		<form id="museum-form">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <h3 class="modal-title" id="exampleModalLabel">
-				<span class="badge bg-primary">Add a New Event</span>
-			</h5>
-			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			  </button>
-			</div>
-			<div class="modal-body">
-
-				<div class="form-group mb-2">
-					<label for="category">Select Category:</label>
-					<select class="form-control" id="selectCategoryEvent" required>
-					</select>
-				  </div>
-				  <div class="form-group mb-2">
-					<label for="category">Select Museum:</label>
-					<select class="form-control" id="selectMuseum" required>
-					</select>
-				  </div>
-					<div class="form-group mb-3">
-						<label for="descriptionPT">Description (PT):</label>
-						<textarea class="form-control" id="descriptionPT" rows="3" placeholder="Enter description in Portuguese" required></textarea>
-					</div>
-					<div class="form-group mb-3">
-						<label for="descriptionEng">Description (Eng):</label>
-						<textarea class="form-control" id="descriptionEng" rows="3" placeholder="Enter description in English"></textarea>
-					</div>
-					<div class="d-flex justify-content-between mb-3">
-						<div class="col-sm-5">
-							<label for="datepicker">Starting Date:</label>
-							<div class="input-group date"  data-provide="datepicker">
-								<input type="text" class="form-control rounded-1" id="startdate">
-								<span class="input-group-append">
-								</span>
-								<span class="input-group-text">
-									<i class="fas fa-calendar"></i>
-								</span>
-							</div>
-						</div>
-						<div class="col-sm-5">
-							<label for="datepicker">Ending Date:</label>
-							<div class="input-group date"  data-provide="datepicker">
-								<input type="text" class="form-control rounded-1" id="enddate">
-								<span class="input-group-append">
-								</span>
-								<span class="input-group-text">
-									<i class="fas fa-calendar"></i>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="regularGallery">Gallery Files:</label>
-						<input type="file" class="form-control" id="gallery" multiple>
-					</div>
-			</div>
-			<div class="modal-footer">
-			<button type="submit" class="btn btn-primary">Save</button>
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-			</div>
-		  </div>
-		</form>
-		</div>
-	  </div>
 
 	<div class="modal fade" id="logout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -295,7 +198,6 @@
 	  </div>
 
 
-	<script type="module" src="../scripts/content-crud/getMuseumIds.js"></script>
 	<script type="module" src="../scripts/content-crud/getCategories.js"></script>
 	<script type="module" src="../scripts/clientrequests/signout.js"></script>
 	<script type="module" src="../scripts/content-crud/getCards.js"></script>
