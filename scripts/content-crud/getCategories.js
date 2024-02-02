@@ -30,12 +30,17 @@ onAuthStateChanged(auth, (user) => {
 });
 const categoryContainer = document.getElementById("selectCategory");
 const eventCategoryContainer = document.getElementById("selectCategoryEvent");
+const artifactCategoryContainer = document.getElementById("selectCategoryArtifact");
 
 document.getElementById("addMuseum-btn").addEventListener("click", function () {
   setupGetCategoriesEventListener(userID);
 });
 
 document.getElementById("addEvent-btn").addEventListener("click", function () {
+  setupGetCategoriesEventListener(userID);
+});
+
+document.getElementById("addArtifact-btn").addEventListener("click", function () {
   setupGetCategoriesEventListener(userID);
 });
 
@@ -55,7 +60,7 @@ async function setupGetCategoriesEventListener(userID) {
     // Clear existing content on the HTML page
     categoryContainer.innerHTML = "";
     eventCategoryContainer.innerHTML = "";
-
+    artifactCategoryContainer.innerHTML = "";
     // Iterate through the data array and append HTML content
     data.forEach(async function (categoryData) {
       // Construct HTML content for each card
@@ -66,6 +71,7 @@ async function setupGetCategoriesEventListener(userID) {
       // Append the HTML content to the card container
       categoryContainer.innerHTML += categoryHTML;
       eventCategoryContainer.innerHTML += categoryHTML;
+      artifactCategoryContainer.innerHTML += categoryHTML;
     });
   } catch (error) {
     console.error("Error fetching data:", error);

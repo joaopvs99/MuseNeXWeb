@@ -84,9 +84,11 @@
 			  
 			  <div id="container-floating">
 
+				<a href="#addArtifact-modal" data-toggle="modal" data-target="#addArtifact-modal" id="addArtifact-btn">
 				<div class="nd4 nds">
 					<img class="reminder" src="https://img.icons8.com/puffy/32/FFFFFF/picture.png" alt="picture"/>
 				</div>
+				</a>
 
 				<a href="#addEvent-modal" data-toggle="modal" data-target="#addEvent-modal" id="addEvent-btn">
 				<div class="nd3 nds">
@@ -173,11 +175,11 @@
 
 	  <div class="modal fade" id="addEvent-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-		<form id="museum-form">
+		<form id="event-form">
 		  <div class="modal-content">
 			<div class="modal-header">
 			  <h3 class="modal-title" id="exampleModalLabel">
-				<span class="badge bg-primary">Add a New Event</span>
+				<span class="badge bg-primary">Add New Event</span>
 			</h5>
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -197,17 +199,17 @@
 				  </div>
 					<div class="form-group mb-3">
 						<label for="descriptionPT">Description (PT):</label>
-						<textarea class="form-control" id="descriptionPT" rows="3" placeholder="Enter description in Portuguese" required></textarea>
+						<textarea class="form-control" id="descriptionPTEvent" rows="3" placeholder="Enter description in Portuguese" required></textarea>
 					</div>
 					<div class="form-group mb-3">
 						<label for="descriptionEng">Description (Eng):</label>
-						<textarea class="form-control" id="descriptionEng" rows="3" placeholder="Enter description in English"></textarea>
+						<textarea class="form-control" id="descriptionEngEvent" rows="3" placeholder="Enter description in English"></textarea>
 					</div>
 					<div class="d-flex justify-content-between mb-3">
 						<div class="col-sm-5">
 							<label for="datepicker">Starting Date:</label>
 							<div class="input-group date"  data-provide="datepicker">
-								<input type="text" class="form-control rounded-1" id="startdate">
+								<input type="text" class="form-control rounded-1" id="startDateEvent">
 								<span class="input-group-append">
 								</span>
 								<span class="input-group-text">
@@ -218,7 +220,7 @@
 						<div class="col-sm-5">
 							<label for="datepicker">Ending Date:</label>
 							<div class="input-group date"  data-provide="datepicker">
-								<input type="text" class="form-control rounded-1" id="enddate">
+								<input type="text" class="form-control rounded-1" id="endDateEvent">
 								<span class="input-group-append">
 								</span>
 								<span class="input-group-text">
@@ -227,9 +229,23 @@
 							</div>
 						</div>
 					</div>
+					<div class="d-flex justify-content-between">
+						<div class="col-sm-5">
+							<div class="form-group mb-3">
+								<label for="closingHours">Opening Hours:</label>
+								<input type="time" class="form-control clockpicker" id="openingHours">
+							</div>
+						</div>
+						<div class="col-sm-5">
+						<div class="form-group mb-3">
+							<label for="closingHours">Closing Hours:</label>
+							<input type="time" class="form-control clockpicker" id="closingHours">
+						</div>
+						</div>
+					</div>
 					<div class="form-group mb-3">
 						<label for="regularGallery">Gallery Files:</label>
-						<input type="file" class="form-control" id="gallery" multiple>
+						<input type="file" class="form-control" id="galleryEvent" multiple>
 					</div>
 			</div>
 			<div class="modal-footer">
@@ -240,6 +256,62 @@
 		</form>
 		</div>
 	  </div>
+
+	  <div class="modal fade" id="addArtifact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<form id="artifact-form">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h3 class="modal-title" id="exampleModalLabel">
+				<span class="badge bg-primary">Add New Artifact</span>
+			</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group mb-2">
+					<label for="category">Select Category:</label>
+					<select class="form-control" id="selectCategoryArtifact" required>
+					</select>
+				  </div>
+				  <div class="form-group mb-2">
+					<label for="category">Select Museum:</label>
+					<select class="form-control" id="selectArtifactMuseum" required>
+					</select>
+				  </div>
+				  <div class="form-group mb-3">
+					<label for="museumName">Author's Name:</label>
+					<input type="text" class="form-control" id="authorName" placeholder="Enter author's name" required>
+				</div>
+					<div class="form-group mb-3">
+						<label for="descriptionPT">Description (PT):</label>
+						<textarea class="form-control" id="descriptionPTArtifact" rows="3" placeholder="Enter description in Portuguese" required></textarea>
+					</div>
+					<div class="form-group mb-3">
+						<label for="descriptionEng">Description (Eng):</label>
+						<textarea class="form-control" id="descriptionEngArtifact" rows="3" placeholder="Enter description in English" required></textarea>
+					</div>
+					<div class="form-group mb-3">
+						<label for="regularGallery">AudioFiles:</label>
+						<input type="file" class="form-control" id="audioArtifact" required>
+					</div>
+					<div class="form-group mb-3">
+						<label for="regularGallery">Gallery Files:</label>
+						<input type="file" class="form-control" id="galleryArtifact" multiple>
+					</div>
+			</div>
+			<div class="modal-footer">
+			<button type="submit" class="btn btn-primary">Save</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			</div>
+		  </div>
+		</form>
+		</div>
+	  </div>
+
+	  
 
 	<div class="modal fade" id="logout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -288,13 +360,46 @@
 			  </button>
 			</div>
 			<div class="modal-body">
-			  You have succesfully added a new museum!
+			  You have successfully added a new museum!
 			</div>
 		  </div>
 		</div>
 	  </div>
 
+	  <div class="modal fade" id="artifactSuccess-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  You have successfully added a new artifact!
+			</div>
+		  </div>
+		</div>
+	  </div>
 
+	  <div class="modal fade" id="eventSuccess-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  You have successfully added a new event!
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	<script type="module" src="../scripts/content-crud/postArtifact.js"></script>
+	<script type="module" src="../scripts/content-crud/postEvent.js"></script>
 	<script type="module" src="../scripts/content-crud/getMuseumIds.js"></script>
 	<script type="module" src="../scripts/content-crud/getCategories.js"></script>
 	<script type="module" src="../scripts/clientrequests/signout.js"></script>

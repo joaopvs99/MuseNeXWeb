@@ -29,8 +29,13 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 const museumContainer = document.getElementById("selectMuseum");
+const artifactMuseumContainer = document.getElementById("selectArtifactMuseum");
 
 document.getElementById("addEvent-btn").addEventListener("click", function () {
+  setupGetMuseumIdsEventListener(userID);
+});
+
+document.getElementById("addArtifact-btn").addEventListener("click", function () {
   setupGetMuseumIdsEventListener(userID);
 });
 
@@ -49,6 +54,7 @@ async function setupGetMuseumIdsEventListener(userID) {
     console.log(data);
     // Clear existing content on the HTML page
         museumContainer.innerHTML = "";
+        artifactMuseumContainer.innerHTML = "";
 
     // Iterate through the data array and append HTML content
     data.forEach(async function (museumData) {
@@ -59,6 +65,7 @@ async function setupGetMuseumIdsEventListener(userID) {
 
       // Append the HTML content to the card container
       museumContainer.innerHTML += museumHTML;
+      artifactMuseumContainer.innerHTML += museumHTML;
     });
   } catch (error) {
     console.error("Error fetching data:", error);

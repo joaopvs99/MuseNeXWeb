@@ -99,6 +99,85 @@ app.post("/postMuseum", async (req, res) => {
   }
 });
 
+const eventsCollection = firestore.collection("Eventos");
+
+app.post("/postEvent", async (req, res) => {
+  try {
+    console.log("request_body:", req.body);
+    
+    // Parse JSON data
+    let jsonData = req.body || {};
+  
+    // Access jsonData fields
+    let categoria_id = jsonData.category;
+    let data_evento_inicial = jsonData.startDate;
+    let data_evento_final = jsonData.endDate;
+    let descricao = jsonData.descriptionPT;
+    let museu_id = jsonData.museumId;
+    let hora_abertura = jsonData.openingHours;
+    let hora_fecho = jsonData.closingHours
+    // Access other fields as needed
+
+    // Access the array of download URLs
+    let galeria = jsonData.gallery || [];
+    
+    // Example: Adding data to Firestore
+    await eventsCollection.add({
+      categoria_id,
+      data_evento_inicial,
+      data_evento_final,
+      descricao,
+      museu_id,
+      galeria,
+      hora_abertura,
+      hora_fecho
+
+    });
+
+    res.status(200).json({ success: true, message: 'Data successfully added to Firestore' });
+  } catch (error) {
+    console.error('Error processing postMuseum request:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
+
+const artifactsCollection = firestore.collection("Obras");
+
+app.post("/postartifact", async (req, res) => {
+  try {
+    console.log("request_body:", req.body);
+    
+    // Parse JSON data
+    let jsonData = req.body || {};
+  
+    // Access jsonData fields
+    let categoria_id = jsonData.category;
+    let descricao = jsonData.descriptionPT;
+    let engDescription = jsonData.descriptionEng;
+    let museu_id = jsonData.museumId;
+    let autor_id = jsonData.autor_id;
+
+    // Access the array of download URLs
+    let foto_url = jsonData.gallery || [];
+    let audio_url = jsonData.audio;
+    
+    // Example: Adding data to Firestore
+    await artifactsCollection.add({
+      categoria_id,
+      autor_id,
+      descricao,
+      engDescription,
+      museu_id,
+      foto_url,
+      audio_url
+    });
+
+    res.status(200).json({ success: true, message: 'Data successfully added to Firestore' });
+  } catch (error) {
+    console.error('Error processing postMuseum request:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
 
 app.get("/getmuseums", async (req, res) => {
   const userUid = req.user.uid;
