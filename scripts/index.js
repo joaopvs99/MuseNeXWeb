@@ -114,8 +114,6 @@ app.post("/postEvent", async (req, res) => {
     let data_evento_final = jsonData.endDate;
     let descricao = jsonData.descriptionPT;
     let museu_id = jsonData.museumId;
-    let hora_abertura = jsonData.openingHours;
-    let hora_fecho = jsonData.closingHours
     // Access other fields as needed
 
     // Access the array of download URLs
@@ -129,8 +127,6 @@ app.post("/postEvent", async (req, res) => {
       descricao,
       museu_id,
       galeria,
-      hora_abertura,
-      hora_fecho
 
     });
 

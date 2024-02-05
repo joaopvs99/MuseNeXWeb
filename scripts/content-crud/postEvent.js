@@ -34,16 +34,30 @@ var form = document.getElementById('event-form');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    const convertToTimestamp = (dateString, timeString) => {
+        const dateTimeString = `${dateString}T${timeString}`;
+        const timestamp = Date.parse(dateTimeString);
+        if (isNaN(timestamp)) {
+          throw new Error(`Invalid date and time: ${dateTimeString}`);
+        }
+        return timestamp;
+      }
+
+      const startDate = document.getElementById('startDateEvent').value;
+      const endDate = document.getElementById('endDateEvent').value;
+      const openingHours = document.getElementById('openingHours').value; 
+      const closingHours = document.getElementById('closingHours').value;
+
+      const startDateTimeStamp = convertToTimestamp(startDate,openingHours);
+      const endDateTimeStamp = convertToTimestamp(endDate,closingHours);
     // Collect input values from the user
     const formData = {
         category: document.getElementById('selectCategoryEvent').value,
         museumId: document.getElementById('selectMuseum').value,
         descriptionPT: document.getElementById('descriptionPTEvent').value,
         descriptionEng: document.getElementById('descriptionEngEvent').value,
-        startDate: document.getElementById('startDateEvent').value,
-        endDate: document.getElementById('endDateEvent').value,
-        openingHours: document.getElementById('openingHours').value,
-        closingHours: document.getElementById('closingHours').value,
+        startDate: startDateTimeStamp,
+        endDate: endDateTimeStamp,
         uid: userID.uid
         // Add other form fields as needed
     };
