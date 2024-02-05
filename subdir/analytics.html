@@ -1,0 +1,30 @@
+<canvas id="analyticsChart" width="400" height="200"></canvas>
+
+<script>
+  var firebaseConfig = {
+    // Your Firebase config here
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  var analytics = firebase.analytics();
+
+  // Fetch analytics data
+  // Example: Fetching page view data
+  analytics.logEvent('page_view');
+
+  // Use a data visualization library (e.g., Chart.js) to display the data
+  var ctx = document.getElementById('analyticsChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Page Views'],
+      datasets: [{
+        label: 'Page Views',
+        data: [/* Use the actual data here */],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    }
+  });
+</script>

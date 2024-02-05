@@ -23,6 +23,8 @@
 	<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js" defer></script>
 	<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js" defer></script>
 	<script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js" defer></script>
+	<script type="module" src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js" defer></script>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 
 <body>
@@ -41,7 +43,7 @@
 				<div class="sb-item" id="getCards"><i class="sb-icon fa fa-solid fa-grip-vertical fa-2xl ms-1"></i>
 					<span class="sb-text ms-2">Dashboard</span>
 				</div>
-				<div class="sb-item sidebar-buttons"><i class="sb-icon fa fa-solid fa-chart-simple fa-2xl"></i>
+				<div class="sb-item sidebar-buttons" onclick="loadNewContent()"><i class="sb-icon fa fa-solid fa-chart-simple fa-2xl"></i>
 					<span class="sb-text">Analytics</span>
 				</div>
 				<div class="btn-toggle-sidebar sb-item"><i class="sb-icon fa fa-solid fa-chevron-left fa-xl"></i>
@@ -107,10 +109,20 @@
 				</div>
 
 			  </div>
-			<!-- <a href="#addMuseum-modal" class="floating" data-toggle="modal" data-target="#addMuseum-modal" id="addMuseum-btn">
-				<div><i class="bi bi-plus-lg h2" style="color: white;"></i></div>
-			</a> -->
 		</div>
+		
+		<script>
+			function loadNewContent() {
+			  // Fetch the content from newContent.html
+			  fetch('analytics.html')
+				.then(response => response.text())
+				.then(data => {
+				  // Update the innerHTML of the main-content div
+				  document.getElementById('cardContainer').innerHTML = data;
+				})
+				.catch(error => console.error('Error fetching content:', error));
+			}
+		  </script>
 	</div>
 	</div>
 
@@ -271,6 +283,10 @@
 					</select>
 				  </div>
 				  <div class="form-group mb-3">
+					<label for="museumName">Artifact Name:</label>
+					<input type="text" class="form-control" id="artifactName" placeholder="Enter author's name" required>
+				</div>
+				  <div class="form-group mb-3">
 					<label for="museumName">Author's Name:</label>
 					<input type="text" class="form-control" id="authorName" placeholder="Enter author's name" required>
 				</div>
@@ -283,8 +299,8 @@
 						<textarea class="form-control" id="descriptionEngArtifact" rows="3" placeholder="Enter description in English" required></textarea>
 					</div>
 					<div class="form-group mb-3">
-						<label for="regularGallery">AudioFiles:</label>
-						<input type="file" class="form-control" id="audioArtifact" required>
+						<label for="regularGallery">Audio Files:</label>
+						<input type="file" class="form-control" id="audioArtifact" accept="audio/mp3" required>
 					</div>
 					<div class="form-group mb-3">
 						<label for="regularGallery">Gallery Files:</label>

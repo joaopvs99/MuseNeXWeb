@@ -152,15 +152,17 @@ app.post("/postartifact", async (req, res) => {
     let engDescription = jsonData.descriptionEng;
     let museu_id = jsonData.museumId;
     let autor_id = jsonData.autor_id;
+    let nome = jsonData.nome;
 
     // Access the array of download URLs
-    let foto_url = jsonData.gallery || [];
+    let foto_url = jsonData.gallery;
     let audio_url = jsonData.audio;
     
     // Example: Adding data to Firestore
     await artifactsCollection.add({
       categoria_id,
       autor_id,
+      nome,
       descricao,
       engDescription,
       museu_id,

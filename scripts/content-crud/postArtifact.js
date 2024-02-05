@@ -25,7 +25,6 @@ onAuthStateChanged(auth, (user) => {
     } else {
         // User is signed out
         console.log('User signed out');
-        // You may want to handle this case accordingly
     }
 });
 
@@ -41,53 +40,53 @@ form.addEventListener('submit', async (event) => {
         descriptionPT: document.getElementById('descriptionPTArtifact').value,
         descriptionEng: document.getElementById('descriptionEngArtifact').value,
         autor_id: document.getElementById('authorName').value,
+        nome: document.getElementById('artifactName').value,
         uid: userID.uid
-        // Add other form fields as needed
+        
     };
 
-    // Create an array to store download URLs
-    const downloadURLs = [];
+    var downloadURL = "";
 
-    // Iterate through selected files and upload each to Firebase Storage
-    const galleryFiles = document.getElementById('galleryArtifact').files;
-    for (let i = 0; i < galleryFiles.length; i++) {
-        const file = galleryFiles[i];
-        const storageRef = ref(storage, 'images/' + file.name);
+// Iterate through selected files and upload each to Firebase Storage
+const galleryFile = document.getElementById('galleryArtifact').files[0];
 
-        try {
-            // Upload the file to Firebase Storage
-            await uploadBytes(storageRef, file);
+const imageFile = galleryFile;
+const imageStorageRef = ref(storage, 'images/' + imageFile.name);
 
-            // Get the download URL of the uploaded image
-            const downloadURL = await getDownloadURL(storageRef);
+try {
+    // Upload the file to Firebase Storage
+    await uploadBytes(imageStorageRef, imageFile);
 
-            // Add the download URL to the array
-            downloadURLs.push(downloadURL);
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            // Handle the error as needed
-        }
-    }
+    // Get the download URL of the uploaded image
+    const imageDownloadURL = await getDownloadURL(imageStorageRef);
 
-    // Add the array of download URLs to the formData
-    formData.gallery = downloadURLs;
+   
+    downloadURL += imageDownloadURL;
+} catch (error) {
+    console.error('Error uploading file:', error);
+   
+}
 
-    const downloadAudioURL = "";
-    const audioFile = document.getElementById('audioArtifact').files;
+
+    formData.gallery = downloadURL;
+
+    var downloadAudioURL = "";
+    const metadata = {
+        contentType: 'audio/mpeg',
+      };
+    const audioFile = document.getElementById('audioArtifact').files[0];
         const file = audioFile;
         const storageRef = ref(storage, 'audio/' + file.name);
 
         try {
             // Upload the file to Firebase Storage
-            await uploadBytes(storageRef, file);
-
-            // Get the download URL of the uploaded image
+            await uploadBytes(storageRef, file, metadata);
             const getDownloadAudioURL = await getDownloadURL(storageRef);
 
-            downloadAudioURL = getDownloadAudioURL;
+            downloadAudioURL += getDownloadAudioURL;
         } catch (error) {
             console.error('Error uploading file:', error);
-            // Handle the error as needed
+          
         }
 
 
@@ -112,7 +111,6 @@ form.addEventListener('submit', async (event) => {
         $("#artifacSuccess-modal").modal("show");
         console.log('Artifact created successfully:', data);
 
-        // Optionally, you can update the UI or perform other actions after creating a postmuseum
     } catch (error) {
         console.error('Error creating artifact', error);
     }
